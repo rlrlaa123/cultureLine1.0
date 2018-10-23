@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # cultureline1.0
 
 > cultureLine iOS Application
@@ -25,3 +26,6 @@ npm test
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+=======
+# cultureLine1.0
+>>>>>>> c6a806996d04369d78f36a7cf51ce155f184be7c
