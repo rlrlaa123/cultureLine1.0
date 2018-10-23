@@ -1,35 +1,35 @@
 <template>
   <transition name="modal">
-    <!--<div class="modal-mask">-->
-      <!--<div class="modal-wrapper">-->
-        <!--<div class="modal-header">-->
-          <!--<img src="../../assets/cancel.png" @click="back">-->
-          <!--<span class="header">글쓰기</span>-->
-          <!--<div>-->
-            <!--<button class="header-btn">작성하기</button>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<select>-->
-          <!--<option>질문 유형을 선택하세요...</option>-->
-          <!--<option>카테고리</option>-->
-          <!--<option>카테고리</option>-->
-          <!--<option>카테고리</option>-->
-        <!--</select>-->
-        <!--<div class="modal-body">-->
-          <!--<div class="modal-input">-->
-            <!--<input type="text" class="input-title" placeholder="제목">-->
-            <!--<textarea-autosize-->
-              <!--class="textarea"-->
-              <!--:min-height="30"-->
-              <!--:max-height="350"-->
-              <!--placeholder="질문을 입력해주세요..."-->
-            <!--&gt;Type something here...</textarea-autosize>-->
-          <!--</div>-->
-          <!--<div class="modal-image"></div>-->
-        <!--</div>-->
-        <!--<div class="modal-footer"></div>-->
-      <!--</div>-->
-    <!--</div>-->
+    <div class="modal-mask">
+      <div class="modal-wrapper">
+        <div class="modal-header">
+          <img src="../../assets/clear.png" @click="back">
+          <span class="header">글쓰기</span>
+          <div>
+            <button class="header-btn">작성하기</button>
+          </div>
+        </div>
+        <select>
+          <option>질문 유형을 선택하세요...</option>
+          <option>카테고리</option>
+          <option>카테고리</option>
+          <option>카테고리</option>
+        </select>
+        <div class="modal-body">
+          <div class="modal-input">
+            <input type="text" class="input-title" placeholder="제목">
+            <textarea-autosize
+              class="textarea"
+              :min-height="30"
+              :max-height="350"
+              placeholder="질문을 입력해주세요..."
+            >Type something here...</textarea-autosize>
+          </div>
+          <div class="modal-image"></div>
+        </div>
+        <div class="modal-footer"></div>
+      </div>
+    </div>
   </transition>
 </template>
 

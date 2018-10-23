@@ -33,8 +33,8 @@
 </template>
 
 <script>
-import QADashboard from './components/QA/Dashboard';
-import ADashboard from './components/Anonymous/Dashboard';
+import QADashboard from './components/QNA/Dashboard';
+import ADashboard from './components/Notice/Dashboard';
 import Profile from './components/Profile/Profile';
 
 export default {
@@ -56,7 +56,7 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    color: #265392;
+    color: black;
     font-size: 13px;
   }
 

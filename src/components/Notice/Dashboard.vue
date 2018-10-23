@@ -35,7 +35,7 @@
               <div>{{ item }}</div>
             </div>
           </div>
-          <p>관련 사이트</p>
+          <p class="notice-link-title">관련 사이트</p>
           <div class="notice-link-wrapper">
             <div class="notice-link-container">
               <img src="../../assets/Notice/tutorial.png">
@@ -154,6 +154,10 @@ export default {
 
   .noticeboard-tutorial img {
     margin-right: 10px;
+  }
+
+  .notice-link-title {
+    color: #265392;
   }
 
   .notice-link-wrapper {

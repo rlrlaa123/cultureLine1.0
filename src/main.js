@@ -17,9 +17,6 @@ import router from './router';
 import { store } from './store/store';
 import firebasePackage from './Packages/Firebase';
 
-
-
-
 Vue.use(Vuetify);
 Vue.use(VueCordova);
 Vue.use(firebasePackage);
