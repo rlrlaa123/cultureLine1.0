@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # cultureline1.0
 
 > cultureLine iOS Application
