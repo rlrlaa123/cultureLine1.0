@@ -8,17 +8,17 @@
       <transition name="expand">
         <div class="notice-container-intro" v-show="foldBtn">
           <img class="intro-image" src="../../assets/Notice/logo.png">
-          <p>
+          <p style="margin: 50px 0; letter-spacing: 2px; word-spacing: 1px;">
             인하컬쳐라인은 인하대학교 문화콘텐츠문화경영학과의 선후배간 소통 플랫폼입니다.
             취업부터 진로까지, 수업에서 배울 수 없었던 꿀팁을 얻을 수 있습니다.
           </p>
           <img class="paragraph-line" src="../../assets/Notice/paragraph-line.png">
-          <p>
-            문화콘텐츠문화경영학과는 인문학적 사유에 기반을 둔 문화콘텐츠 기획과
-            창작에 적합한 체계적 교과 프로그램을 운영중입니다.
-            동시에, 문화콘텐츠 상품의 마케팅 및 브랜딩에 필요한 분석력,
-            표현력 등을 갖춘 창발적 통섭지식인 양성을 목표로 하고 있습니다.
-          </p>
+          <!--<p>-->
+            <!--문화콘텐츠문화경영학과는 인문학적 사유에 기반을 둔 문화콘텐츠 기획과-->
+            <!--창작에 적합한 체계적 교과 프로그램을 운영중입니다.-->
+            <!--동시에, 문화콘텐츠 상품의 마케팅 및 브랜딩에 필요한 분석력,-->
+            <!--표현력 등을 갖춘 창발적 통섭지식인 양성을 목표로 하고 있습니다.-->
+          <!--</p>-->
         </div>
       </transition>
       <transition name="expand">

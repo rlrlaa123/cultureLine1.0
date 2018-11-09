@@ -10,16 +10,20 @@ import 'vuetify/dist/vuetify.min.css';
 import 'material-design-icons-iconfont/dist/material-design-icons.css'; // Ensure you are using css-loader
 
 import axios from 'axios';
+import Toasted from 'vue-toasted';
 
 import App from './App';
 import router from './router';
 
 import { store } from './store/store';
 import firebasePackage from './Packages/Firebase';
+import Auth from './Packages/Auth';
 
 Vue.use(Vuetify);
 Vue.use(VueCordova);
 Vue.use(firebasePackage);
+Vue.use(Auth);
+Vue.use(Toasted);
 
 Vue.config.productionTip = false;
 axios.defaults.baseURL = 'http://198.13.50.135/api';
@@ -34,6 +38,14 @@ const config = {
 };
 
 firebase.initializeApp(config);
+
+// router.beforeEach((to, from, next) => {
+//   if (Auth.isAuthenticated()) {
+//     next();
+//   } else {
+//
+//   }
+// });
 
 /* eslint-disable no-new */
 new Vue({

@@ -1,34 +1,39 @@
 <template>
   <div id="app">
-    <header>
-      <div>
-        <img src="./assets/title_logo.png" width="120px">
-      </div>
-      <div>
-        <img src="./assets/message.png" width="50px">
-        <img src="./assets/search.png" width="50px">
-      </div>
-    </header>
-    <v-tabs fixed-tabs>
-      <v-tab>
-        공지사항
-      </v-tab>
-      <v-tab>
-        질문 & 답변
-      </v-tab>
-      <v-tab>
-        프로필
-      </v-tab>
-      <v-tab-item>
-        <a-dashboard></a-dashboard>
-      </v-tab-item>
-      <v-tab-item>
-        <q-a-dashboard></q-a-dashboard>
-      </v-tab-item>
-      <v-tab-item>
-        <profile></profile>
-      </v-tab-item>
-    </v-tabs>
+    <!--<button @click="login = true">로그인</button>-->
+    <!--<button @click="login = false">로그아웃</button>-->
+    <login v-if="!login"></login>
+    <div v-else>
+      <header>
+        <div>
+          <img src="./assets/title_logo.png" width="120px">
+        </div>
+        <div>
+          <img src="./assets/message.png" width="50px">
+          <img src="./assets/search.png" width="50px">
+        </div>
+      </header>
+      <v-tabs fixed-tabs>
+        <v-tab>
+          공지사항
+        </v-tab>
+        <v-tab>
+          질문 & 답변
+        </v-tab>
+        <v-tab>
+          프로필
+        </v-tab>
+        <v-tab-item>
+          <a-dashboard></a-dashboard>
+        </v-tab-item>
+        <v-tab-item>
+          <q-a-dashboard></q-a-dashboard>
+        </v-tab-item>
+        <v-tab-item>
+          <profile></profile>
+        </v-tab-item>
+      </v-tabs>
+    </div>
   </div>
 </template>
 
@@ -36,6 +41,7 @@
 import QADashboard from './components/QNA/Dashboard';
 import ADashboard from './components/Notice/Dashboard';
 import Profile from './components/Profile/Profile';
+import Login from './components/Auth/Banner';
 
 export default {
   name: 'App',
@@ -43,9 +49,16 @@ export default {
     QADashboard,
     ADashboard,
     Profile,
+    Login,
+  },
+  data() {
+    return {
+      login: this.$auth.isAuthenticated,
+    };
   },
   created() {
     // this.$store.commit.getCategories;
+    console.log(this.$auth);
   },
 };
 </script>
