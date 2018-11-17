@@ -29,30 +29,48 @@
             <h3>이메일 목록</h3>
             <p>아래 이메일을 클릭하시면 비밀번호 변경 창으로 이동합니다</p>
             <div v-for="email in emails" v-bind:key="email.id">
-              <span>{{ email.email}}</span>
+              <span @click="setEmail(email.email)">{{ email.email}}</span>
             </div>
           </div>
         </div>
       </div>
+      <reset-password v-if="showPwReset"
+                      @close="showPwReset = false"
+                      @toLogin="exit()"
+                      :email=tempEmail></reset-password>
     </div>
   </transition>
 </template>
 
 <script>
 import axios from 'axios';
+import ResetPassword from './ResetPassword';
 
 export default {
-  props: [''],
+  components: {
+    ResetPassword,
+  },
   data() {
     return {
       emails: [],
       name: '',
       stu_id: '',
+      showPwReset: false,
+      tempEmail: '',
     };
   },
   methods: {
     back() {
       this.$emit('close');
+    },
+    setEmail(email) {
+      this.showPwReset = true;
+      this.tempEmail = email;
+    },
+    exit() {
+      this.showPwReset = false;
+      this.$emit('close');
+      this.$emit('toLogin');
     },
     submit() {
       axios.post('auth/id', {

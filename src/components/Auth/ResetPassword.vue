@@ -4,60 +4,72 @@
       <div class="modal-wrapper">
         <div class="modal-header">
           <img src="../../assets/clear.png" @click="back">
-          <span class="header">로그인</span>
+          <span class="header">비밀번호 찾기</span>
           <span></span>
         </div>
         <div class="modal-body">
           <v-text-field
-            label="아이디"
-            prepend-icon="person"
-            light
-            color="blue darken-3"
-            v-model="email"
-          ></v-text-field>
-          <v-text-field
-            label="비밀번호 (8자이상 문자, 숫자)"
-            prepend-icon="lock"
+            label="새 비밀번호 (8자 이상 문자, 숫자)"
             light
             color="blue darken-3"
             v-model="password"
+            type="password"
+          ></v-text-field>
+          <v-text-field
+            label="비밀번호 확인"
+            light
+            color="blue darken-3"
+            v-model="passwordConfirm"
+            type="password"
           ></v-text-field>
         </div>
         <div class="modal-footer">
-          <button class="login-btn" @click="submit()">로그인</button>
-          <p class="login-search-btn" @click="showSearch = true">아이디/비밀번호 찾기</p>
+          <button class="login-btn" @click="submit()">확인</button>
         </div>
       </div>
-      <email-search v-if="showSearch" @close="showSearch = false" @toLogin="exit()"></email-search>
     </div>
   </transition>
 </template>
 
 <script>
-import EmailSearch from './EmailSearch';
+import axios from 'axios';
 
 export default {
-  props: [''],
-  components: {
-    EmailSearch,
-  },
+  props: ['email'],
   data() {
     return {
-      showSearch: false,
-      email: '',
       password: '',
+      passwordConfirm: '',
     };
   },
   methods: {
     submit() {
+      if (this.password === this.passwordConfirm) {
+        axios.post('auth/pw', {
+          email: this.email,
+          password: this.password,
+        }).then(() => {
+          const myToast = this.$toasted.show('비밀번호가 정상적으로 변경되었습니다', {
+            containerClass: 'active',
+            position: 'bottom-center',
+            fullWidth: true,
+          });
 
+          myToast.goAway(1500);
+          this.$emit('toLogin');
+        });
+      } else {
+        const myToast = this.$toasted.show('같은 비밀번호를 입력해주세요', {
+          containerClass: 'active',
+          position: 'bottom-center',
+          fullWidth: true,
+        });
+
+        myToast.goAway(1500);
+      }
     },
     back() {
       this.$emit('close');
-    },
-    exit() {
-      this.$emit('close');
-      this.showSearch = false;
     },
   },
 };
@@ -109,12 +121,10 @@ export default {
 
   .modal-body {
     background-color: white;
-    padding: 40px;
-    margin-top: 50px;
+    padding: 30px;
   }
 
   .modal-footer {
-    padding: 35px;
     text-align: center;
   }
 

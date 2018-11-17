@@ -4,8 +4,7 @@ export default () => {
   Vue.auth = {
     // set token
     setToken: (token, expiration) => {
-      localStorage.setItem('token', token);
-      localStorage.setItem('expiration', expiration);
+
     },
 
     // get token

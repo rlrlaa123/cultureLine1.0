@@ -26,7 +26,7 @@ Vue.use(Auth);
 Vue.use(Toasted);
 
 Vue.config.productionTip = false;
-axios.defaults.baseURL = 'http://198.13.50.135/api';
+axios.defaults.baseURL = 'http://127.0.0.1:8000/api';
 
 const config = {
   apiKey: 'AIzaSyBuAS1WyhIjCPCDImFedIQSJlKhpQnhSI0',

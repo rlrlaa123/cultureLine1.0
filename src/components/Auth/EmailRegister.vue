@@ -23,34 +23,47 @@
               >
             </div>
           </div>
+          <p class="validation-error" v-if="errors.profile">{{ errors.profile[0] }}</p>
           <v-text-field
             label="이름"
             light
             color="blue darken-3"
+            v-model="name"
           ></v-text-field>
+          <p class="validation-error" v-if="errors.name">{{ errors.name[0] }}</p>
           <v-text-field
             label="전공"
             light
             color="blue darken-3"
+            v-model="major"
           ></v-text-field>
+          <p class="validation-error" v-if="errors.major">{{ errors.major[0] }}</p>
           <v-text-field
             label="학번"
             light
             color="blue darken-3"
+            v-model="stu_id"
           ></v-text-field>
+          <p class="validation-error" v-if="errors.stu_id">{{ errors.stu_id[0] }}</p>
           <v-text-field
             label="example@naver.com"
             light
             color="blue darken-3"
+            type="email"
+            v-model="email"
           ></v-text-field>
+          <p class="validation-error" v-if="errors.email">{{ errors.email[0] }}</p>
           <v-text-field
             label="비밀번호 (8자이상 문자,숫자)"
             light
             color="blue darken-3"
+            type="password"
+            v-model="password"
           ></v-text-field>
+          <p class="validation-error" v-if="errors.password">{{ errors.password[0] }}</p>
         </div>
         <div class="modal-footer">
-          <button class="register-btn">회원가입완료</button>
+          <button class="register-btn" @click="submit()">회원가입완료</button>
         </div>
       </div>
     </div>
@@ -58,6 +71,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   props: [''],
   data() {
@@ -67,6 +82,13 @@ export default {
       profiles: [],
       profileShow: false,
       isActive: false,
+      email: '',
+      password: '',
+      name: '',
+      major: '',
+      stu_id: '',
+      profile_id: '',
+      errors: {},
     };
   },
   created() {
@@ -82,6 +104,22 @@ export default {
     selectProfile(id) {
       this.profileSet = this.profiles[id - 1].src;
       this.profileShow = false;
+      this.profile_id = this.profiles[id - 1].id;
+    },
+    submit() {
+      axios.post('auth/register', {
+        email: this.email,
+        password: this.password,
+        password_confirmation: this.password,
+        name: this.name,
+        major: this.major,
+        stu_id: this.stu_id,
+        profile: this.profile_id,
+      }).then((response) => {
+        if (response.data !== 'success') {
+          this.errors = response.data;
+        }
+      });
     },
   },
 };
@@ -194,6 +232,10 @@ export default {
 
   .login-search-btn {
     margin: 15px 0;
+  }
+
+  .validation-error {
+    color: red;
   }
 
   .modal-enter {

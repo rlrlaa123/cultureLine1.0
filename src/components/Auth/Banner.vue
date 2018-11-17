@@ -16,8 +16,6 @@
 </template>
 
 <script>
-// import axios from 'axios';
-// import firebase from 'firebase';
 import EmailLogin from './EmailLogin';
 import EmailRegister from './EmailRegister';
 import EmailSearch from './EmailSearch';
@@ -37,7 +35,6 @@ export default {
       showSearch: false,
     };
   },
-  created() {},
   methods: {
     openLogin() {
       this.showLogin = true;
