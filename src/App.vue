@@ -2,7 +2,7 @@
   <div id="app">
     <!--<button @click="login = true">로그인</button>-->
     <!--<button @click="login = false">로그아웃</button>-->
-    <login v-if="!login"></login>
+    <login v-if="!login" @login="login = true"></login>
     <div v-else>
       <header>
         <div>
@@ -53,12 +53,10 @@ export default {
   },
   data() {
     return {
-      login: this.$auth.isAuthenticated,
+      login: this.$auth.isAuthenticated(),
     };
   },
   created() {
-    // this.$store.commit.getCategories;
-    console.log(this.$auth);
   },
 };
 </script>
@@ -109,5 +107,9 @@ export default {
   a {
     color: unset;
     text-decoration: none;
+  }
+
+  .validation-error {
+    color: red;
   }
 </style>

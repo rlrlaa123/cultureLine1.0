@@ -13,15 +13,19 @@
             prepend-icon="person"
             light
             color="blue darken-3"
+            type="email"
             v-model="email"
           ></v-text-field>
+          <p class="validation-error" v-if="errors.email">{{ errors.email[0] }}</p>
           <v-text-field
             label="비밀번호 (8자이상 문자, 숫자)"
             prepend-icon="lock"
             light
             color="blue darken-3"
+            type="password"
             v-model="password"
           ></v-text-field>
+          <p class="validation-error" v-if="errors.password">{{ errors.password[0] }}</p>
         </div>
         <div class="modal-footer">
           <button class="login-btn" @click="submit()">로그인</button>
@@ -34,6 +38,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import EmailSearch from './EmailSearch';
 
 export default {
@@ -46,18 +51,42 @@ export default {
       showSearch: false,
       email: '',
       password: '',
+      errors: {},
     };
   },
   methods: {
-    submit() {
-
-    },
     back() {
       this.$emit('close');
     },
     exit() {
       this.$emit('close');
       this.showSearch = false;
+    },
+    submit() {
+      axios.post('auth/ios/login', {
+        email: this.email,
+        password: this.password,
+        password_confirmation: this.password,
+      }).then((response) => {
+        if (!response.data.access_token) {
+          this.errors = response.data;
+        } else {
+          this.$auth.setToken(response.data.access_token, response.data.expiration);
+          this.$auth.setToken(response.data.access_token);
+
+          this.$emit('loginSuccess');
+          this.$emit('close');
+        }
+      }).catch(() => {
+        const myToast = this.$toasted.show('서버와의 문제가 생겼습니다. 아이디와 비밀번호를 확인해보세요.', {
+          containerClass: 'active',
+          position: 'bottom-center',
+          // fitToScreen: true,
+          fullWidth: true,
+        });
+
+        myToast.goAway(1500);
+      });
     },
   },
 };

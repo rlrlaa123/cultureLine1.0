@@ -118,6 +118,8 @@ export default {
       }).then((response) => {
         if (response.data !== 'success') {
           this.errors = response.data;
+        } else {
+          this.$emit('close');
         }
       });
     },
@@ -232,10 +234,6 @@ export default {
 
   .login-search-btn {
     margin: 15px 0;
-  }
-
-  .validation-error {
-    color: red;
   }
 
   .modal-enter {

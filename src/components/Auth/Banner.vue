@@ -9,7 +9,7 @@
       <span class="login-btn" @click="showRegister = true">회원가입</span>
     </div>
     <p class="login-find-info" @click="showSearch = true">이메일 비밀번호찾기</p>
-    <email-login v-if="showLogin" @close="showLogin = false"></email-login>
+    <email-login v-if="showLogin" @close="showLogin = false" @loginSuccess="loggedIn()"></email-login>
     <email-register v-if="showRegister" @close="showRegister = false"></email-register>
     <email-search v-if="showSearch" @close="showSearch = false"></email-search>
   </div>
@@ -41,6 +41,9 @@ export default {
     },
     openRegister() {
       this.showRegister = true;
+    },
+    loggedIn() {
+      this.$emit('login');
     },
   },
 };
